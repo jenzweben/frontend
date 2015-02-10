@@ -43,7 +43,7 @@ var User = DS.Model.extend({
       defer.resolve([school]);
     });
     return defer.promise;
-   }.property('primarySchool'),
+  }.property('primarySchool'),
   fullName: function() {
       return this.get('firstName') + ' ' + this.get('lastName');
   }.property('firstName', 'lastName'),
@@ -67,7 +67,8 @@ var User = DS.Model.extend({
             return events;
         });
       });
-  }.property('offerings.@each', 'offerings.@each.session')
+  }.property('offerings.@each', 'offerings.@each.session'),
+  allRelatedCourses: Ember.computed.alias('directedCourses'),
 });
 
 export default User;
